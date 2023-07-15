@@ -12,14 +12,13 @@ from speller_agent import SpellerAgentConfig
 
 BASE_URL = os.environ["BASE_URL"]
 
-
 async def main():
     config_manager = RedisConfigManager()
 
     outbound_call = OutboundCall(
         base_url=BASE_URL,
-        to_phone="+15555555555",
-        from_phone="+15555555555",
+        to_phone=os.getenv("INBOUND_RECEIVER_NUMBER"),
+        from_phone=os.getenv("OUTBOUND_CALLER_NUMBER"),
         config_manager=config_manager,
         agent_config=SpellerAgentConfig(generate_responses=False),
     )
